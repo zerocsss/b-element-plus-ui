@@ -1,24 +1,45 @@
 {
-  "name": "happy-ui",
-  "version": "0.1.0",
-  "private": true,
+  "name": "b-element-plus-ui",
+  "version": "0.4.0",
+  "private": false,
+  "main": "lib/index.umd.js",
+  "module": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "yarn build:esm && yarn build:esm-bundle && yarn build:umd",
+    "lint": "vue-cli-service lint",
+    "build:lib": "vue-cli-service build --target lib ./packages/index.ts",
+    "build:esm-bundle": "rollup --config ./build/rollup.config.esm-bundle.js",
+    "build:esm": "rollup --config ./build/rollup.config.esm.js",
+    "build:umd": "rollup --config ./build/rollup.config.umd.js"
   },
+  "keywords": [
+    "vue3.x",
+    "element-plus",
+    "ts"
+  ],
+  "author": {
+    "name": "changs"
+  },
+  "license": "MIT",
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "element-plus": "^1.0.2-beta.70",
+    "vue": "^3.2.1"
+  },
+  "peerDependencies": {
+    "element-plus": "^1.0.2-beta.70"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/compiler-sfc": "^3.2.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^6.7.2",
@@ -26,6 +47,11 @@
     "eslint-plugin-vue": "^7.0.0",
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
+    "rollup": "^2.56.2",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-vue": "^6.0.0",
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5"
   }
